@@ -16,6 +16,28 @@ export const Content = styled.div`
     background-color: #353440;
     padding: 30px;
     width: 100%;
+    div {
+      text-align: center;
+      margin: 20px;
+      img {
+        border: 10px solid #011126;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+      }
+    }
+    .buttons {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      button {
+        text-align: start;
+        font-size: 11pt;
+        padding: 15px;
+        width: 50%;
+      }
+    }
   }
 
   div.options {
