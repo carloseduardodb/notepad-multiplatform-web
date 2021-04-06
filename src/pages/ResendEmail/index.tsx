@@ -2,7 +2,6 @@ import React from 'react';
 import { Content } from './styles';
 import InputText from '../../components/InputText';
 import logo from '../../assets/Logo.svg';
-import Checkbox from '../../components/Checkbox';
 import Button from '../../components/Button';
 
 const ResendEmail = () => {
