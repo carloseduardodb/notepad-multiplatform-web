@@ -26,3 +26,11 @@ export const NavItem = styled.ul`
     }
   }
 `;
+
+export const NavLogo = styled.nav`
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+`;

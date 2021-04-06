@@ -16,14 +16,6 @@ export const Content = styled.div`
     background-color: #353440;
     padding: 30px;
     width: 100%;
-
-    .nav-logo {
-      margin-bottom: 30px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-    }
   }
 
   div.options {

@@ -17,10 +17,7 @@ const Home = () => {
   return (
     <Content>
       <div className="dashboard">
-        <div className="nav-logo">
-          <img src={logo} width="10%" alt="Notepad Multiplatform" />
-          <Navbar />
-        </div>
+        <Navbar />
         <ListNotes note={dataExample.note} />
       </div>
     </Content>

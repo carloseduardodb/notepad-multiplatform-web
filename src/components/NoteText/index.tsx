@@ -1,11 +1,8 @@
 import React from 'react';
+import { Text } from './styles';
 
 const NoteText = () => {
-  return (
-    <div>
-      <p>Olá</p>
-    </div>
-  );
+  return <Text placeholder="Texto"></Text>;
 };
 
 export default NoteText;
