@@ -24,3 +24,10 @@ const Routes: React.FC = () => (
 );
 
 export default Routes;
+
+/**
+ * Olá boa noite, sou o Carlos do setimo periodo de licenciatura em computação! Eu fiz o cadastro pra pagar a disciplina de
+ * Lógica Matemática mas vi que os horarios coincidem com educação a distancia,
+ * acredito que se manter remoto desta forma eu consigo assistir as aulas gravadas
+ * e assim pagar essa dependencia. Será que eu posso fazer isso?
+ */

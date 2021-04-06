@@ -4,6 +4,7 @@ import InputText from '../../components/InputText';
 import logo from '../../assets/Logo.svg';
 import Checkbox from '../../components/Checkbox';
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -19,8 +20,12 @@ const Login = () => {
         </div>
 
         <div style={{ marginTop: 10 }}>
-          <Button text="Entrar" color="#BF9B6F" />
-          <Button text="Registrar" color="#F2808A" />
+          <Link to="/home">
+            <Button text="Entrar" color="#BF9B6F" />
+          </Link>
+          <Link to="/register">
+            <Button text="Registrar" color="#F2808A" />
+          </Link>
         </div>
       </form>
     </Content>

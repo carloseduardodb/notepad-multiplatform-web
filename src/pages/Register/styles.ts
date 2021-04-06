@@ -7,7 +7,12 @@ export const Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
+  background: rgb(191, 155, 111);
+  background: radial-gradient(
+    circle,
+    rgba(191, 155, 111, 1) 0%,
+    rgba(27, 27, 27, 1) 30%
+  );
   h3 {
     margin-top: 30px;
     margin-bottom: 20px;
@@ -19,6 +24,13 @@ export const Content = styled.div`
     border-radius: 10px;
     width: 60%;
     max-width: 500px;
+    position: relative;
+    .return-login {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 40px;
+    }
   }
 
   div.options {
