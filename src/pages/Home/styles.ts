@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Content = styled.div`
-  height: 100vh;
   background-color: #fff;
   display: flex;
   flex-direction: row;
@@ -16,15 +15,14 @@ export const Content = styled.div`
   .dashboard {
     background-color: #353440;
     padding: 30px;
-    border-radius: 10px;
-    width: 90%;
-    position: relative;
+    width: 100%;
 
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin: 30px;
+    .nav-logo {
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
     }
   }
 
