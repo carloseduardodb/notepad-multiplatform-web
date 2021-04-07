@@ -8,12 +8,14 @@ import ResendEmail from '../pages/ResendEmail';
 import Home from '../pages/Home';
 import Editor from '../pages/Editor';
 import Profile from '../pages/Profile';
+import VerifyAccount from '../pages/VerifyAccount';
 
 const Routes: React.FC = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/" exact component={Decision} />
       <Route path="/login" component={Login} />
+      <Route path="/verify-account" component={VerifyAccount} />
       <Route path="/register" component={Register} />
       <Route path="/resend-email" component={ResendEmail} />
       <Route path="/home" component={Home} />
