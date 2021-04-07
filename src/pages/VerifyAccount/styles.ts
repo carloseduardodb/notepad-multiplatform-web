@@ -6,12 +6,7 @@ export const Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: rgb(191, 155, 111);
-  background: radial-gradient(
-    circle,
-    rgba(191, 155, 111, 1) 0%,
-    rgba(27, 27, 27, 1) 30%
-  );
+  background: url('https://i.pinimg.com/originals/fc/12/af/fc12af4fdda0c0ec5cf23ae293d11a7d.png');
   h3 {
     margin-top: 30px;
     margin-bottom: 20px;
@@ -21,7 +16,7 @@ export const Content = styled.div`
     background-color: #353440;
     padding: 30px;
     border-radius: 10px;
-    width: 60%;
+    width: max-content;
     max-width: 500px;
     position: relative;
     .return-login {
@@ -29,6 +24,14 @@ export const Content = styled.div`
       top: 0;
       right: 0;
       margin: 40px;
+    }
+    input {
+      caret-color: #bf9b6f;
+      :focus {
+        border: 2px solid #bf9b6f;
+        outline: none;
+        box-shadow: 0 0 2pt 1pt #bf9b6f;
+      }
     }
   }
 

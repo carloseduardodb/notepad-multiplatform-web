@@ -1,8 +1,6 @@
-import React from 'react';
 import { Content } from './styles';
 import InputText from '../../components/InputText';
 import logo from '../../assets/Logo.svg';
-import Checkbox from '../../components/Checkbox';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
@@ -25,7 +23,7 @@ const Register = () => {
           placeholder="Repita sua senha"
         />
         <div className="options">
-          <Link to="forgot-the-password">
+          <Link to="/resend-email">
             <a href="#">Esqueci a senha</a>
           </Link>
         </div>
