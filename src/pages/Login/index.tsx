@@ -16,7 +16,7 @@ const Login = () => {
         <InputText type="password" name="password" placeholder="Senha" />
         <div className="options">
           <Checkbox />
-          <a href="#">Esqueci a senha</a>
+          <Link to="/resend-email">Esqueci a senha</Link>
         </div>
 
         <div style={{ marginTop: 10 }}>
