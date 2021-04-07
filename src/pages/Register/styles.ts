@@ -7,12 +7,7 @@ export const Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: rgb(191, 155, 111);
-  background: radial-gradient(
-    circle,
-    rgba(191, 155, 111, 1) 0%,
-    rgba(27, 27, 27, 1) 30%
-  );
+  background: url('https://i.pinimg.com/originals/fc/12/af/fc12af4fdda0c0ec5cf23ae293d11a7d.png');
   h3 {
     margin-top: 30px;
     margin-bottom: 20px;

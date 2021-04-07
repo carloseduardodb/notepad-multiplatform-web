@@ -7,6 +7,7 @@ export const Content = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background: url('https://i.pinimg.com/originals/fc/12/af/fc12af4fdda0c0ec5cf23ae293d11a7d.png');
 
   h3 {
     margin-top: 30px;
