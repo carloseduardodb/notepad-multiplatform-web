@@ -2,6 +2,7 @@ import React from 'react';
 import { Content } from './styles';
 import Navbar from '../../components/Navbar';
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   return (
@@ -17,7 +18,9 @@ const Profile = () => {
         <div className="buttons">
           <Button color="#BF9B6F" text="Nome" />
           <Button color="#BF9B6F" text="Senha" />
-          <Button color="#011126" text="Logout" />
+          <Link style={{ width: '100%' }} to="/login">
+            <Button color="#011126" text="Logout" />
+          </Link>
           <Button color="#011126" text="Apagar Conta" />
         </div>
       </div>
