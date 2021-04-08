@@ -5,11 +5,21 @@ import logo from '../../assets/Logo.svg';
 import Checkbox from '../../components/Checkbox';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
+import { Form } from '@unform/web';
+
+interface loginData {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
+  function handleSubmit(data: loginData) {
+    alert('Email: ' + data.email);
+  }
+
   return (
     <Content>
-      <form className="form-body">
+      <Form onSubmit={handleSubmit} className="form-body">
         <img src={logo} width="40%" alt="Notepad Multiplatform" />
         <h3>Entrar</h3>
         <InputText type="email" name="email" placeholder="Email" />
@@ -20,14 +30,12 @@ const Login = () => {
         </div>
 
         <div style={{ marginTop: 10 }}>
-          <Link to="/home">
-            <Button text="Entrar" color="#BF9B6F" />
-          </Link>
+          <Button type="submit" text="Entrar" color="#BF9B6F" />
           <Link to="/register">
-            <Button text="Registrar" color="#F2808A" />
+            <Button type="button" text="Registrar" color="#F2808A" />
           </Link>
         </div>
-      </form>
+      </Form>
     </Content>
   );
 };
