@@ -16,6 +16,9 @@ export const Input = styled.input`
   padding: 10px;
   color: #fff;
   border-radius: 7px;
+  &.has-error {
+    box-shadow: 0 0 2pt 1pt #c23232;
+  }
   :focus {
     outline: none;
     box-shadow: 0 0 2pt 1pt #bf9b6f;

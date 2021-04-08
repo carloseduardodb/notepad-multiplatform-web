@@ -36,6 +36,7 @@ const Input: React.FC<Props> = ({ name, placeholder, type, ...rest }) => {
         type={type}
         id={name}
         placeholder={placeholder}
+        className={error ? 'has-error' : ''}
         {...rest}
       />
     </Content>
