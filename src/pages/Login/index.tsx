@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Content } from './styles';
 import InputText from '../../components/InputText';
 import logo from '../../assets/Logo.svg';
@@ -6,6 +6,9 @@ import Checkbox from '../../components/Checkbox';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
+import * as Yup from 'yup';
+import getValidationsErrors from '../../utils/getValidationsErrors';
+import { FormHandles } from '@unform/core';
 
 interface loginData {
   email: string;
@@ -13,13 +16,30 @@ interface loginData {
 }
 
 const Login = () => {
-  function handleSubmit(data: loginData) {
-    alert('Email: ' + data.email);
+  const formRef = useRef<FormHandles>(null);
+
+  async function handleSubmit(data: loginData) {
+    try {
+      const schema = Yup.object().shape({
+        email: Yup.string().email().required(),
+        password: Yup.string().min(6).required(),
+      });
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+      //Validation passed
+      console.log(data);
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationsErrors(err);
+        formRef.current?.setErrors(errors);
+      }
+    }
   }
 
   return (
     <Content>
-      <Form onSubmit={handleSubmit} className="form-body">
+      <Form ref={formRef} onSubmit={handleSubmit} className="form-body">
         <img src={logo} width="40%" alt="Notepad Multiplatform" />
         <h3>Entrar</h3>
         <InputText type="email" name="email" placeholder="Email" />
