@@ -45,7 +45,6 @@ const ResendEmail = () => {
         <InputText type="email" name="email" placeholder="Email" />
         <div style={{ marginTop: -10 }}>
           <Button type="submit" text="Reenviar" color="#F2808A" />
-          <Button type="button" text="Fazer Login" color="#BF9B6F" />
         </div>
       </Form>
     </Content>
