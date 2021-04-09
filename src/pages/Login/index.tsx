@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Content } from './styles';
 import InputText from '../../components/InputText';
 import logo from '../../assets/Logo.svg';
@@ -11,6 +11,8 @@ import getValidationsErrors from '../../utils/getValidationsErrors';
 import { FormHandles } from '@unform/core';
 import api from '../../services/api';
 import UserData from '../../class/UserData';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 interface loginData {
   email: string;
@@ -48,8 +50,12 @@ const Login = () => {
       await localStorage.setItemAsync('user_email', data.user.email);
     }
 
+    console.log(hidratedData);
+
     api
-      .post<dataUser>('user/login', hidratedData)
+      .post<dataUser>('user/login', hidratedData, {
+        headers: { 'Content-Type': 'application/json' },
+      })
       .then((response) => {
         UserData.user = response.data.user;
         UserData.token = response.data.token;
@@ -62,10 +68,8 @@ const Login = () => {
         }
       })
       .catch((error) => {
-        /*Alert.alert(
-          'Alerta',
-          'Sua senha ou email estão incorretos, ou você está offline!',
-        );*/
+        console.log(error.response.data.errors);
+        toast.error('Usuário ou senha incorretos!');
       });
   }
 
@@ -78,8 +82,7 @@ const Login = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
-      //Validation passed
-      console.log(data);
+      sendData(data);
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationsErrors(err);
@@ -107,6 +110,7 @@ const Login = () => {
           </Link>
         </div>
       </Form>
+      <ToastContainer />
     </Content>
   );
 };
