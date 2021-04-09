@@ -9,6 +9,8 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import getValidationsErrors from '../../utils/getValidationsErrors';
 import { FormHandles } from '@unform/core';
+import { toast, ToastContainer } from 'react-toastify';
+import api from '../../services/api';
 
 interface registerData {
   name: string;
@@ -19,6 +21,25 @@ interface registerData {
 
 const Register = () => {
   const formRef = useRef<FormHandles>(null);
+
+  async function seedData(data: registerData) {
+    const { name, email, password } = data;
+
+    const hidrateData = {
+      name: name,
+      email: email,
+      password: password,
+    };
+    await api
+      .post('user/create', hidrateData)
+      .then((response) => {
+        toast.success('Conta criada com sucesso');
+        toast.success('Verifique sua caixa de email');
+      })
+      .catch((error) => {
+        toast.error('error');
+      });
+  }
 
   async function handleSubmit(data: registerData) {
     try {
@@ -31,8 +52,7 @@ const Register = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
-      //Validation passed
-      console.log(data);
+      seedData(data);
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationsErrors(err);
