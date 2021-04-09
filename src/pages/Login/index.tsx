@@ -4,19 +4,70 @@ import InputText from '../../components/InputText';
 import logo from '../../assets/Logo.svg';
 import Checkbox from '../../components/Checkbox';
 import Button from '../../components/Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import getValidationsErrors from '../../utils/getValidationsErrors';
 import { FormHandles } from '@unform/core';
+import api from '../../services/api';
+import UserData from '../../class/UserData';
 
 interface loginData {
   email: string;
   password: string;
 }
 
+interface dataUser {
+  status: string;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    email_verified_at: null | Date;
+    created_at: Date;
+    updated_at: Date;
+  };
+  token: string;
+}
+
 const Login = () => {
   const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
+
+  async function sendData(data: loginData) {
+    const { email, password } = data;
+
+    const hidratedData = {
+      device_name: navigator.userAgent,
+      email: email,
+      password: password,
+    };
+
+    async function saveUserToken(data: dataUser) {
+      await localStorage.setItemAsync('user_token', data.token);
+      await localStorage.setItemAsync('user_email', data.user.email);
+    }
+
+    api
+      .post<dataUser>('user/login', hidratedData)
+      .then((response) => {
+        UserData.user = response.data.user;
+        UserData.token = response.data.token;
+        const { data } = response;
+        saveUserToken(data);
+        if (!!!data.user.email_verified_at) {
+          history.push('/verify-account');
+        } else {
+          history.push('/home');
+        }
+      })
+      .catch((error) => {
+        /*Alert.alert(
+          'Alerta',
+          'Sua senha ou email estão incorretos, ou você está offline!',
+        );*/
+      });
+  }
 
   async function handleSubmit(data: loginData) {
     try {
