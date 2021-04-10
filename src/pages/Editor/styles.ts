@@ -11,23 +11,32 @@ export const Content = styled.div`
     background-color: #353440;
     padding: 30px;
     width: 100%;
+
+    .centered {
+      width: 100%;
+      text-align: center;
+
+      div.teste {
+        margin: 0 auto;
+        width: 80%;
+        display: flex;
+        justify-content: flex-end;
+        button {
+          width: max-content;
+        }
+      }
+    }
   }
 
   .inputs-note {
     display: flex;
     align-items: center;
     flex-direction: column;
-  }
-
-  .action-buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 130px;
-    button {
-      width: 25%;
-      margin-bottom: 10px;
+    input {
+      width: 80%;
+    }
+    textArea {
+      width: 80%;
     }
   }
 `;
