@@ -13,6 +13,7 @@ import api from '../../services/api';
 import UserData from '../../class/UserData';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import monitorLocation from '../../utils/monitorLocation';
 
 interface loginData {
   email: string;
@@ -33,6 +34,7 @@ interface dataUser {
 }
 
 const Login = () => {
+  const monitorLocationx = monitorLocation();
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 
@@ -49,8 +51,6 @@ const Login = () => {
       await localStorage.setItem('user_token', data.token);
       await localStorage.setItem('user_email', data.user.email);
     }
-
-    console.log(hidratedData);
 
     api
       .post<dataUser>('user/login', hidratedData, {
