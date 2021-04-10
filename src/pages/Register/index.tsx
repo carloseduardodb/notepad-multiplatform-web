@@ -11,6 +11,7 @@ import getValidationsErrors from '../../utils/getValidationsErrors';
 import { FormHandles } from '@unform/core';
 import { toast, ToastContainer } from 'react-toastify';
 import api from '../../services/api';
+import monitorLocation from '../../utils/monitorLocation';
 
 interface registerData {
   name: string;
@@ -20,6 +21,7 @@ interface registerData {
 }
 
 const Register = () => {
+  monitorLocation();
   const formRef = useRef<FormHandles>(null);
 
   async function seedData(data: registerData) {

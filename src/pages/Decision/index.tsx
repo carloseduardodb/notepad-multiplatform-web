@@ -3,8 +3,10 @@ import { Content, ContentAnimation } from './styles';
 import Lottie from 'react-lottie';
 import animationAtom from '../../animations/atomic.json';
 import { useSpring, animated } from 'react-spring';
+import monitorLocation from '../../utils/monitorLocation';
 
 const Decision = () => {
+  monitorLocation();
   const props = useSpring({ opacity: 1, from: { opacity: 0 } });
   const defaultOptions = {
     loop: true,

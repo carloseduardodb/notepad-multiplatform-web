@@ -4,8 +4,10 @@ import Navbar from '../../components/Navbar';
 import NoteTitle from '../../components/NoteTitle';
 import NoteText from '../../components/NoteText';
 import Button from '../../components/Button';
+import monitorLocation from '../../utils/monitorLocation';
 
 const Editor = () => {
+  monitorLocation();
   return (
     <Content>
       <div className="dashboard">

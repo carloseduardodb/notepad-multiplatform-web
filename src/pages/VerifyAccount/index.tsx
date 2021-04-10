@@ -8,8 +8,10 @@ import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import { FiArrowLeft } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
+import monitorLocation from '../../utils/monitorLocation';
 
 const VerifyAccount = () => {
+  monitorLocation();
   const [code, setCode] = useState('');
   const history = useHistory();
 

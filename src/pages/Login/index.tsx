@@ -34,7 +34,7 @@ interface dataUser {
 }
 
 const Login = () => {
-  const monitorLocationx = monitorLocation();
+  monitorLocation();
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
 

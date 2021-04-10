@@ -3,6 +3,7 @@ import { Content } from './styles';
 import logo from '../../assets/Logo.svg';
 import Navbar from '../../components/Navbar';
 import ListNotes from '../../components/ListNotes';
+import monitorLocation from '../../utils/monitorLocation';
 
 const dataExample = {
   note: {
@@ -14,6 +15,7 @@ const dataExample = {
 };
 
 const Home = () => {
+  monitorLocation();
   return (
     <Content>
       <div className="dashboard">

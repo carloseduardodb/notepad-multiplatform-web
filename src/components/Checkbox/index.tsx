@@ -4,7 +4,7 @@ import { CheckboxCp } from './styles';
 const Checkbox = () => {
   return (
     <CheckboxCp>
-      <input type="checkbox" id="remember" />
+      <input type="checkbox" checked id="remember" />
       <label htmlFor="remember">Lembrar de mim</label>
     </CheckboxCp>
   );

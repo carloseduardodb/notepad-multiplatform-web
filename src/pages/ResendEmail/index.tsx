@@ -9,12 +9,14 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import getValidationsErrors from '../../utils/getValidationsErrors';
+import monitorLocation from '../../utils/monitorLocation';
 
 interface resendData {
   email: string;
 }
 
 const ResendEmail = () => {
+  monitorLocation();
   const formRef = useRef<FormHandles>(null);
 
   async function handleSubmit(data: resendData) {

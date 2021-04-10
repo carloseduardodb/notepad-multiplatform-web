@@ -3,8 +3,10 @@ import { Content } from './styles';
 import Navbar from '../../components/Navbar';
 import Button from '../../components/Button';
 import { useHistory } from 'react-router-dom';
+import monitorLocation from '../../utils/monitorLocation';
 
 const Profile = () => {
+  monitorLocation();
   const history = useHistory();
   function handleLogout() {
     localStorage.removeItem('user_email');
