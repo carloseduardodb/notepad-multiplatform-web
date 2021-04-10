@@ -46,8 +46,8 @@ const Login = () => {
     };
 
     async function saveUserToken(data: dataUser) {
-      await localStorage.setItemAsync('user_token', data.token);
-      await localStorage.setItemAsync('user_email', data.user.email);
+      await localStorage.setItem('user_token', data.token);
+      await localStorage.setItem('user_email', data.user.email);
     }
 
     console.log(hidratedData);
