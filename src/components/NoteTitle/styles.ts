@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Title = styled.input`
-  width: 60%;
   height: 40px;
   border: none;
   margin: 10px;

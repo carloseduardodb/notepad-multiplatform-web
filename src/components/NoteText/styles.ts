@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Text = styled.textarea`
   height: 65vh;
-  width: 60%;
   border-radius: 10px;
   border: none;
   color: #fff;
