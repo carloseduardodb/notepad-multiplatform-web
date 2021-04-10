@@ -2,9 +2,15 @@ import React from 'react';
 import { Content } from './styles';
 import Navbar from '../../components/Navbar';
 import Button from '../../components/Button';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
+  const history = useHistory();
+  function handleLogout() {
+    localStorage.removeItem('user_email');
+    localStorage.removeItem('user_token');
+    history.push('/login');
+  }
   return (
     <Content>
       <div className="dashboard">
@@ -18,9 +24,7 @@ const Profile = () => {
         <div className="buttons">
           <Button color="#BF9B6F" text="Nome" />
           <Button color="#BF9B6F" text="Senha" />
-          <Link style={{ width: '100%' }} to="/login">
-            <Button color="#011126" text="Logout" />
-          </Link>
+          <Button onClick={handleLogout} color="#011126" text="Logout" />
           <Button color="#011126" text="Apagar Conta" />
         </div>
       </div>
