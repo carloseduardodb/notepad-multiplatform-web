@@ -37,6 +37,13 @@ export const Note = styled.li`
   padding: 10px;
   a {
     text-decoration: none;
+    color: #f7806d;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .icon {
+      margin: 15px;
+    }
   }
   p {
     margin-top: 15px;

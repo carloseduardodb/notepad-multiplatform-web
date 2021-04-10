@@ -1,81 +1,34 @@
 import React from 'react';
-import { Note, Notes as ContentNotes, Content } from './styles';
+import { Link } from 'react-router-dom';
+import { Note as CPNote, Notes as ContentNotes, Content } from './styles';
+import { FaStickyNote } from 'react-icons/fa';
 
-interface Notes {
-  note: {
-    id: string;
-    title: string;
-    text: string;
-  };
+interface Note {
+  id: string;
+  title: string;
+  created_at: string;
+  text: string;
 }
 
-const ListNotes: React.FC<Notes> = ({ note, ...rest }) => {
+interface Notes {
+  notes: Note | any;
+}
+
+const ListNotes: React.FC<Notes> = ({ notes, ...rest }) => {
   return (
     <Content>
       <ContentNotes>
-        <Note>
-          <a href="#">
-            <img src="" alt="" />
-            <div>
-              <h4>{note.title}</h4>
-              <p>{note.text}</p>
-            </div>
-          </a>
-        </Note>
-        <Note>
-          <a href="#">
-            <img src="" alt="" />
-            <div>
-              <h4>{note.title}</h4>
-              <p>{note.text}</p>
-            </div>
-          </a>
-        </Note>
-        <Note>
-          <a href="#">
-            <img src="" alt="" />
-            <div>
-              <h4>{note.title}</h4>
-              <p>{note.text}</p>
-            </div>
-          </a>
-        </Note>
-        <Note>
-          <a href="#">
-            <img src="" alt="" />
-            <div>
-              <h4>{note.title}</h4>
-              <p>{note.text}</p>
-            </div>
-          </a>
-        </Note>
-        <Note>
-          <a href="#">
-            <img src="" alt="" />
-            <div>
-              <h4>{note.title}</h4>
-              <p>{note.text}</p>
-            </div>
-          </a>
-        </Note>
-        <Note>
-          <a href="#">
-            <img src="" alt="" />
-            <div>
-              <h4>{note.title}</h4>
-              <p>{note.text}</p>
-            </div>
-          </a>
-        </Note>
-        <Note>
-          <a href="#">
-            <img src="" alt="" />
-            <div>
-              <h4>{note.title}</h4>
-              <p>{note.text}</p>
-            </div>
-          </a>
-        </Note>
+        {notes.map((note: Note) => (
+          <CPNote key={note.id}>
+            <Link to={`/editor/${note.id}`}>
+              <FaStickyNote className="icon" size={40} />
+              <div>
+                <h4>{note.title}</h4>
+                <p>{note.text}</p>
+              </div>
+            </Link>
+          </CPNote>
+        ))}
       </ContentNotes>
     </Content>
   );
