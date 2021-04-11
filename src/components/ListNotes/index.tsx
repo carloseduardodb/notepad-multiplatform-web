@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Note as CPNote, Notes as ContentNotes, Content } from './styles';
-import { FaStickyNote } from 'react-icons/fa';
+import { FaStickyNote, FaTrash } from 'react-icons/fa';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
 
@@ -16,7 +16,9 @@ interface Notes {
   notes: Note | any;
 }
 
-const ListNotes: React.FC<Notes> = ({ notes, ...rest }) => {
+const ListNotes: React.FC<Notes> = ({ notes }) => {
+  const [teste, setTeste] = useState('');
+  const history = useHistory();
   const config = {
     Accept: 'application/json',
     headers: {
@@ -24,11 +26,16 @@ const ListNotes: React.FC<Notes> = ({ notes, ...rest }) => {
     },
   };
 
-  async function handleDeleteNote(id: number) {
+  useEffect(() => {
+    notes = notes;
+  }, [notes]);
+
+  async function handleDeleteNote(id: string) {
     if (id != null) {
       await api
         .delete('note/delete/' + id, config)
         .then((response) => {
+          window.location.reload();
           toast.success('Apagado com successo!');
         })
         .catch((e) => {
@@ -50,6 +57,9 @@ const ListNotes: React.FC<Notes> = ({ notes, ...rest }) => {
                 <p>{note.text}</p>
               </div>
             </Link>
+            <a href="#" onClick={() => handleDeleteNote(note.id)}>
+              <FaTrash className="icon" size={20} color="#F2808A" />
+            </a>
           </CPNote>
         ))}
       </ContentNotes>

@@ -10,6 +10,7 @@ import { FormHandles } from '@unform/core';
 import api from '../../services/api';
 import { toast, ToastContainer } from 'react-toastify';
 import { useHistory } from 'react-router';
+import { number } from 'yup';
 
 interface noteParam {
   id: string;
@@ -24,6 +25,8 @@ const Editor = () => {
   monitorLocation();
   const history = useHistory();
   const [id, setId] = useState('');
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
   const formRef = useRef<FormHandles>(null);
   const config = {
     Accept: 'application/json',
@@ -35,10 +38,20 @@ const Editor = () => {
     const hidratedId = window.location.pathname.split('/');
     const identify = hidratedId[2];
     setId(identify);
+    if (Number(identify) > 0)
+      api
+        .get('note/show/' + identify, config)
+        .then((response) => {
+          setTitle(String(response.data.note.title));
+          setText(String(response.data.note.text));
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
   }, [window.location.pathname.split('/').length == 3]);
 
   function handleSubmit(data: dataForm) {
-    if (id == '') {
+    if (window.location.pathname.split('/').length !== 3) {
       handleSendNote(data);
     } else {
       handleUpdateNote(data);
@@ -69,6 +82,7 @@ const Editor = () => {
       await api
         .post('note/create', { title: data.title, text: data.note }, config)
         .then((response) => {
+          formRef.current?.reset();
           toast.success('Deu tudo certo ao salvar!');
         })
         .catch((e) => {
@@ -84,6 +98,7 @@ const Editor = () => {
       <div className="dashboard">
         <Navbar />
         <Form
+          initialData={{ title: title, note: text }}
           className="centered"
           onSubmit={(data) => {
             handleSubmit(data);

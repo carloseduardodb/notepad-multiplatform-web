@@ -35,6 +35,9 @@ export const Note = styled.li`
   list-style: none;
   border-bottom: 1px solid #4d545c;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
   a {
     text-decoration: none;
     color: #f7806d;
