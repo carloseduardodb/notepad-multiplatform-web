@@ -50,6 +50,11 @@ const Login = () => {
     async function saveUserToken(data: dataUser) {
       await localStorage.setItem('user_token', data.token);
       await localStorage.setItem('user_email', data.user.email);
+      await localStorage.setItem(
+        'user_verification_email',
+        '' + data.user.email_verified_at,
+      );
+      await localStorage.setItem('user_name', data.user.name);
     }
 
     api
