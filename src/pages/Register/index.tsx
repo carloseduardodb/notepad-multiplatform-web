@@ -32,8 +32,11 @@ const Register = () => {
       email: email,
       password: password,
     };
+
     await api
-      .post('user/create', hidrateData)
+      .post('user/create', hidrateData, {
+        headers: { 'Content-Type': 'application/json' },
+      })
       .then((response) => {
         toast.success('Conta criada com sucesso');
         toast.success('Verifique sua caixa de email');
@@ -89,6 +92,7 @@ const Register = () => {
           <Button type="submit" text="Registrar" color="#F2808A" />
         </div>
       </Form>
+      <ToastContainer />
     </Content>
   );
 };
