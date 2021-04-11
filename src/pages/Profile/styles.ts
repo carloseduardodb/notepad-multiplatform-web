@@ -35,7 +35,8 @@ export const Content = styled.div`
         text-align: start;
         font-size: 11pt;
         padding: 15px;
-        width: 50%;
+        width: 100%;
+        max-width: 500px;
       }
     }
   }
