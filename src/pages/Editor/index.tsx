@@ -9,6 +9,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import api from '../../services/api';
 import { toast, ToastContainer } from 'react-toastify';
+import { useHistory } from 'react-router';
 
 interface noteParam {
   id: string;
@@ -21,6 +22,7 @@ interface dataForm {
 
 const Editor = () => {
   monitorLocation();
+  const history = useHistory();
   const [id, setId] = useState('');
   const formRef = useRef<FormHandles>(null);
   const config = {
@@ -34,6 +36,33 @@ const Editor = () => {
     const identify = hidratedId[2];
     setId(identify);
   }, [window.location.pathname.split('/').length == 3]);
+
+  function handleSubmit(data: dataForm) {
+    if (id == '') {
+      handleSendNote(data);
+    } else {
+      handleUpdateNote(data);
+    }
+  }
+
+  async function handleUpdateNote(data: dataForm) {
+    if (data.note.length >= 1 || data.title.length >= 1) {
+      await api
+        .put(
+          'note/update/' + id,
+          { title: data.title, text: data.note },
+          config,
+        )
+        .then((response) => {
+          toast.success('Sucesso ao atualizar nota!');
+        })
+        .catch((e) => {
+          toast.error('Erro: ' + e.message);
+        });
+    } else {
+      toast.warn('Ooooooops! Não é possivel salvar um documento vazio.');
+    }
+  }
 
   async function handleSendNote(data: dataForm) {
     if (data.note.length >= 1 || data.title.length >= 1) {
@@ -57,7 +86,7 @@ const Editor = () => {
         <Form
           className="centered"
           onSubmit={(data) => {
-            handleSendNote(data);
+            handleSubmit(data);
           }}
           ref={formRef}
         >
