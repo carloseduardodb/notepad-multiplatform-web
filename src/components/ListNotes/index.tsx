@@ -35,7 +35,7 @@ const ListNotes: React.FC<Notes> = ({ notes }) => {
       await api
         .delete('note/delete/' + id, config)
         .then((response) => {
-          window.location.reload();
+          document.getElementById(id)?.remove();
           toast.success('Apagado com successo!');
         })
         .catch((e) => {
@@ -48,8 +48,11 @@ const ListNotes: React.FC<Notes> = ({ notes }) => {
   return (
     <Content>
       <ContentNotes>
+        {notes.length === 0 && (
+          <p>Crie sua primeira nota clicando em criar ali em cima!</p>
+        )}
         {notes.map((note: Note) => (
-          <CPNote key={note.id}>
+          <CPNote id={note.id} key={note.id}>
             <Link to={`/editor/${note.id}`}>
               <FaStickyNote className="icon" size={40} />
               <div>
