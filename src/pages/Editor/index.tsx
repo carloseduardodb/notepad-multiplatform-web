@@ -11,6 +11,7 @@ import api from '../../services/api';
 import { toast, ToastContainer } from 'react-toastify';
 import { useHistory } from 'react-router';
 import { number } from 'yup';
+import useFullLoader from '../../hooks/useFullLoader';
 
 interface noteParam {
   id: string;
@@ -23,7 +24,7 @@ interface dataForm {
 
 const Editor = () => {
   monitorLocation();
-  const history = useHistory();
+  const [loader, showLoader, hideLoader] = useFullLoader();
   const [id, setId] = useState('');
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
@@ -38,16 +39,20 @@ const Editor = () => {
     const hidratedId = window.location.pathname.split('/');
     const identify = hidratedId[2];
     setId(identify);
-    if (Number(identify) > 0)
+    if (Number(identify) > 0) {
+      showLoader();
       api
         .get('note/show/' + identify, config)
         .then((response) => {
+          hideLoader();
           setTitle(String(response.data.note.title));
           setText(String(response.data.note.text));
         })
         .catch((error) => {
+          hideLoader();
           toast.error(error.message);
         });
+    }
   }, [window.location.pathname.split('/').length == 3]);
 
   function handleSubmit(data: dataForm) {
@@ -95,6 +100,7 @@ const Editor = () => {
 
   return (
     <Content>
+      {loader}
       <div className="dashboard">
         <Navbar />
         <Form
