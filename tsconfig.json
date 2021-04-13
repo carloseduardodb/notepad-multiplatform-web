@@ -15,6 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    //remove to --dev / add to --production
     "noImplicitAny": false
   },
   "include": ["src"]

@@ -25,7 +25,7 @@ const monitorLocation = () => {
       history.push('home');
     }
   } else {
-    if (token == null && email == null) {
+    if (token == null && email == null && name_router != '/') {
       history.push('login');
     }
   }
