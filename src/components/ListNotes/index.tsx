@@ -17,8 +17,6 @@ interface Notes {
 }
 
 const ListNotes: React.FC<Notes> = ({ notes }) => {
-  const [teste, setTeste] = useState('');
-  const history = useHistory();
   const config = {
     Accept: 'application/json',
     headers: {
