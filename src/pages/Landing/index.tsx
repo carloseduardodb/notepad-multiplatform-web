@@ -30,7 +30,7 @@ const Landing = () => {
             color="#353440"
             text="Cadastrar"
           />
-          <p>Developer By Carlos Eduardo Dias Batista</p>
+          <p>Developed By Carlos Eduardo Dias Batista</p>
         </div>
       </div>
     </Content>
