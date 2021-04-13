@@ -6,6 +6,7 @@ import ListNotes from '../../components/ListNotes';
 import monitorLocation from '../../utils/monitorLocation';
 import api from '../../services/api';
 import { toast, ToastContainer } from 'react-toastify';
+import useFullLoader from '../../hooks/useFullLoader';
 
 const dataExample = {
   note: {
@@ -26,8 +27,10 @@ interface Note {
 const Home = () => {
   monitorLocation();
   const [notes, setNotes] = useState<Note[]>([]);
+  const [loader, showLoader, hideLoader] = useFullLoader();
 
   useEffect(() => {
+    showLoader();
     const config = {
       Accept: 'application/json',
       headers: {
@@ -38,8 +41,10 @@ const Home = () => {
       .get('note/show', config)
       .then((response) => {
         setNotes(response.data.notes.reverse());
+        hideLoader();
       })
       .catch((error) => {
+        hideLoader();
         toast.error('Erro: ' + error.message);
       });
   }, []);
@@ -51,6 +56,7 @@ const Home = () => {
         <ListNotes notes={notes} />
       </div>
       <ToastContainer />
+      {loader}
     </Content>
   );
 };
